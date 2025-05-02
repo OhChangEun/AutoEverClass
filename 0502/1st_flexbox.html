@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        letter-spacing: -1.5px;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* height를 명시적으로 설정해주어야 교차축 방향으로*/
+        /* 브라우저가 기본적으로 body의 너비를 **기본적으로 100%**로 채우기 때문이다. */
+      }
+      .flex-container {
+        width: 300px;
+        height: 200px;
+        background-color: beige;
+        border: 1px solid black;
+        display: flex;
+        gap: 2px;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+
+        flex-flow: row wrap;
+        /* flex-direction**과 **flex-wrap**을 한 줄로 줄여서 쓰는 단축 속성 */
+        /* flex-direction: row;
+           flex-wrap: wrap; 과 동일 */
+        justify-content: center; /* 주축 정렬 */
+        justify-content: space-between; /* 사이 간격 균등, 양 끝은 붙음 */
+        justify-content: space-around; /* 아이템마다 좌우 공백 내부 간격의 ½ */
+
+        align-items: stretch; /* 자식의 크기가 설정되지 않았을 때 자동으로 height 설정 */
+      }
+      .flex-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        /* height: 50px; */
+        border: 1px solid darkblue;
+        color: white;
+        background-color: lightcoral;
+      }
+      .flex-item:nth-child(2n) {
+        background-color: orange;
+        /* flex-grow: 1; */
+        /* 요소가 남은 공간을 얼마나 많이 차지할 것인지를 결정 */
+        /* 남는 공간 적절히 채운다는 뜻 */
+      }
+      .flex-item:first-child {
+        align-self: flex-end;
+        flex-shrink: 1; /* 찌그러질 때까지 찌그러지다가 튀어나감 */ /* 공간이 부족할 때 축소 비율 설정  */
+        /* align-items는 전체 자식들에 대해 공통 정렬 기준을 설정하지만,
+           align-self는 개별 요소마다 다르게 정렬하고 싶을 때 사용합니다. */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="flex-item">item1</div>
+      <div class="flex-item">item2</div>
+      <div class="flex-item">item3</div>
+      <div class="flex-item">item4</div>
+      <div class="flex-item">item5</div>
+      <div class="flex-item">item6</div>
+      <div class="flex-item">item7</div>
+      <div class="flex-item">item8</div>
+      <div class="flex-item">item9</div>
+    </div>
+  </body>
+</html>

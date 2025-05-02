@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .red-box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        /* transition:<property>, <durtation>, <timing-function>, <delay>; */
+        /* transition: [속성] [지속시간] [타이밍함수] [지연시간]; */
+        /* transition: all 1s ease; */
+        /* transition: background-color 1s ease, width 0.5s ease; */
+        /* transition-property: background-color;
+        transition-duration: 1s, 3s; 지속시간
+        transition-delay: 0.2s; 지연시간 */
+        transition: all 3s ease-in-out;
+      }
+      .red-box:hover {
+        width: 200px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="red-box"></div>
+  </body>
+</html>
