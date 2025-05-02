@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+:root {
+  --adaptiveRedOpacity900: rgba(255, 0, 0, 1);
+  --adaptiveRedOpacity800: rgba(255, 0, 0, 0.8);
+  --adaptiveRedOpacity600: rgba(255, 0, 0, 0.6);
+  --adaptiveRedOpacity400: rgba(255, 0, 0, 0.4);
+  --adaptiveRedOpacity200: rgba(255, 0, 0, 0.2);
+  --adaptiveRedOpacity100: rgba(255, 0, 0, 0.1);
+}
+
+/* * {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+#first-paragraph {
+  background-color: gray;
+  text-align: center;
+  display: block;
+}
+
+#movie-intro {
+  background-color: goldenrod;
+  color: white;
+  text-align: center;
+}
+
+#tv-intro {
+  background-color: burlywood;
+  color: white;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  width: 50px;
+  margin-left: 20px;
+  /* border: 1px solid black; */
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid lightblue;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+th {
+  /* background: burlywood; */
+}
+
+video {
+  width: 500px;
+} */

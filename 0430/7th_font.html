@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+      * {
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        box-sizing: border-box;
+      }
+      .container {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 정렬하면 */
+        align-items: center; /* 교차 축이 가로가 되어버림*/
+        width: 90%;
+        max-width: 304px;
+        height: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .log-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 28px;
+        width: 228px;
+        height: 44px;
+        background-color: white;
+        border: 1px solid black;
+      }
+      .log-in:hover,
+      button:hover {
+        cursor: pointer;
+      }
+      .log-in i {
+        color: #4285f4;
+        margin-right: 8px;
+      }
+      .seperate {
+        margin: 20px;
+      }
+      input {
+        width: 228px;
+        height: 44px;
+        margin-bottom: 14px;
+        border: none;
+        background-color: #eaeaea;
+        padding-left: 8px;
+      }
+      button {
+        width: 228px;
+        height: 44px;
+        background-color: #373f3c;
+        color: white;
+        margin: 10px 0 32px 0;
+      }
+      a {
+        text-decoration: none;
+        color: #2c3432;
+        font-weight: lighter;
+        margin-bottom: 10%;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="log-in">
+        <i class="fa-brands fa-google"></i>Log in with Google
+      </div>
+      <div class="seperate">or</div>
+      <input type="username" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button>LOGIN</button>
+      <a href="#">Forgot your password?</a>0
+    </div>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        width: 520px;
+        border: 1px solid black;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .header div {
+        text-align: center;
+        font-size: 14px;
+      }
+      .section1 div,
+      .section2 label {
+        display: block;
+        margin-left: 24px;
+      }
+
+      textarea {
+        width: 100%; /* 부모 요소의 너비에 맞춰 */
+        height: auto; /* 내용에 맞게 자동으로 높이가 조절 */
+        box-sizing: border-box; /* padding과 border를 포함시켜서 크기 계산 */
+        resize: vertical; /* 세로 크기만 조절 가능 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>프론트앤드 개발자 지원서</h1>
+        <div>
+          HTML, CSS, Javascript에 대한 기술적 이해와 경험이 있는 분을 찾습니다.
+        </div>
+      </div>
+      <hr />
+      <form action="#" method="post">
+        <div class="section1">
+          <h4>개인 정보</h4>
+          <div class="name-section">
+            <label for="name">이름</label>
+            <input type="text" id="name" placeholder="공백없이 입력하세요." />
+          </div>
+          <div class="name">
+            <label for="phone-num">연락처</label>
+            <input type="text" id="phone-num" />
+          </div>
+        </div>
+        <div class="section2">
+          <h4>지원 분야</h4>
+          <label for="publishing">
+            <input type="radio" id="publishing" name="field" />
+            웹퍼블리싱
+          </label>
+          <label for="frontend">
+            <input type="radio" id="frontend" name="field" /> 웹프론트엔드
+          </label>
+          <label for="mobile">
+            <input type="radio" id="mobile" name="field" /> 모바일 앱
+          </label>
+        </div>
+        <div class="section3">
+          <h4>지원동기</h4>
+          <textarea name="desc" rows="5" cols="60" maxlength="70"></textarea>
+          <div class="buttons">
+            <button type="submit">접수하기</button>
+            <button type="reset">다시쓰기</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

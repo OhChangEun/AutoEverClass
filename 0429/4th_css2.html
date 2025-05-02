@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+    <style>
+      /* 그룹 선택자 */
+      p,
+      #title,
+      .red {
+        color: red;
+      }
+
+      .box > p {
+        color: royalblue;
+      }
+
+      /* 인접 형제 연산자 */
+      /* 근데 굳이 쓸 필요 없을 듯*/
+      h1 + h2 {
+        color: orange;
+      }
+
+      /* 가상 요소 선택자 : 실제로는 존재하지 않는 가상의 부분  */
+      h1::before {
+        content: "★";
+        color: red;
+      }
+
+      /* 가상 클래스 선택자 : 방문했는지 안했는지 */
+      a:link {
+        color: orange;
+      }
+
+      a:visited {
+        color: blue;
+      }
+
+      /* 동적 가상 클래스 선택자 : 사용자의 동작 상태에 따라 */
+      button {
+        width: 150px;
+        height: 40px;
+        background-color: darkgreen;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.6s ease;
+      }
+
+      button:hover {
+        background-color: rgb(12, 41, 12);
+      }
+
+      button:active {
+        transform: translate(1px, 2px);
+      }
+
+      /* 입력 요소 가상 클래스 선택자 : focus, checked, disabled, enabled  */
+      input:focus {
+        background-color: rgb(226, 172, 172);
+      }
+
+      input:disabled {
+        background-color: gray;
+      }
+
+      /* 구조적 가상 클래스 선택자 : 요소의 구조와 위치에 따라 스타일을 적용하는 방법 */
+      li:first-child {
+        color: blue;
+      }
+      li:last-child {
+        color: red;
+      }
+      li:nth-child(2n) {
+        color: green;
+      }
+      li:nth-child(2n-1) {
+        color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <p>색상 확인</p>
+    <div id="title">제목 색상</div>
+    <nav class="red">클래스 선택자</nav>
+    <div class="box">
+      <p>저는 자식 1번입니다.</p>
+      <p>저는 자식 2번입니다.</p>
+      <div>
+        <p>저는 자식에 자식 1번 입니다.</p>
+      </div>
+    </div>
+    <h1>인접 형제 1번 입니다.</h1>
+    <h2>인접 형제 2번 입니다.</h2>
+    <h2>인접 형제 3번 입니다.</h2>
+    <h2>인접 형제 4번 입니다.</h2>
+    <a href="http://kakao.com">kakao</a>
+    <button>초록색 버튼</button>
+    <br />
+    <label for="id">입력</label>
+    <input type="text" id="id" />
+    <label for="disabled">비활성화 확인</label>
+    <input type="text" id="disabled" disabled />
+
+    <br />
+    <ul>
+      <li>리스트 1</li>
+      <li>리스트 2</li>
+      <li>리스트 3</li>
+      <li>리스트 4</li>
+    </ul>
+  </body>
+</html>

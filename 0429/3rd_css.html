@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 스타일 초기화를 위함 -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+    /> -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+    <style>
+      /* 전체 선택자 */
+      * {
+        font-family: "Black Han Sans", "Roboto", Arial, sans-serif;
+        font-size: 1.3rem;
+      }
+
+      /* 태그 선택자 */
+      div {
+        width: 200px;
+        height: 50px;
+        text-align: center; /* 텍스트를 수평 중앙 정렬 */
+        line-height: 50px; /* 텍스트 줄 높이를 div 높이와 동일하게 설정 */
+        color: white;
+        border-radius: 8px;
+        margin-top: 10px;
+      }
+
+      /* 아이디 선택자 */
+      #first {
+        background-color: royalblue;
+      }
+
+      /* 클래스 선택자 */
+      .second {
+        background-color: orange;
+      }
+
+      /* 속성 선택자 */
+      a[href] {
+        color: red;
+      }
+
+      a[target="_blank"] {
+        background: url("./images/brar.png");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="first">1번</div>
+    <div class="second">2번</div>
+    <p>안녕하세요. 오늘은 날씨가 화창해요~~</p>
+    <a href="https://naver.com" target="_blank">naver</a>
+  </body>
+</html>

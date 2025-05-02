@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+    <style>
+      * {
+        letter-spacing: -1.5px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        position: relative;
+        margin: 20px 5px 10px; /* 상, 좌우, 하(시계 방향) */
+        padding: 20px;
+        padding-bottom: 36px;
+        background-color: var(--adaptiveRedOpacity100);
+        border: 3px solid var(--adaptiveRedOpacity400);
+        width: 880px;
+        height: 180px;
+        /* 총 크기에 관한 것 */
+        /* border-width: 10px 5px 5px 10px; */
+        box-sizing: border-box;
+        /* content-box (기본값): width와 height 속성에 지정한 값에 padding과 border의 크기를 추가합니다. */
+        /* box-sizing: content-box; */
+
+        /* box-shadow: 1px 1px 3px blue; */
+        transition: transform 0.2s ease; /* 부드러운 애니메이션 효과 */
+
+        display: flex; /* flexbox 사용 */
+        align-items: center; /* 수직 중앙 정렬 */
+        justify-content: center; /* 수평 중앙 정렬 */
+      }
+      .container:hover {
+        transform: translateY(-3px); /* 위로 살짝 이동 */
+      }
+      div {
+        color: var(--adaptiveRedOpacity800);
+      }
+      .box-radius {
+        /* 부모에 relative 설정 및 자식 absolute*/
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 80px;
+        height: 32px;
+        background-color: var(--adaptiveRedOpacity600);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .box-radius:hover {
+        background-color: var(--adaptiveRedOpacity400);
+      }
+      h4 {
+        background-color: var(--adaptiveRedOpacity200);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>
+        우리는 수많은 실수를 합니다. 그것이 바로 인생이죠. 하지만 최소한
+        그것들은 새로워지고 창조적이게 됩니다.
+      </p>
+      <p class="box-radius">OK</p>
+    </div>
+    <span class="inline">디스플레이 속성을 변경해 보겠습니다.</span>
+    <span>이건 다음 줄 입니다.</span>
+  </body>
+</html>
