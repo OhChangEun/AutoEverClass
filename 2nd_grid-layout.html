@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .grid-container {
+        width: 700px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 100px);
+
+        /* grid-template-areas 속성으로 이름을 지정하고 나면
+        grid-area 속성으로 이름을 그리드 아이템에 배치할 수 있음*/
+        grid-template-areas:
+          "header header header"
+          "sidebar content content"
+          "footer footer footer";
+      }
+      #header {
+        grid-area: header;
+        background-color: bisque;
+      }
+      #sidebar {
+        grid-area: sidebar;
+        background-color: burlywood;
+      }
+      #content {
+        grid-area: content;
+        background-color: brown;
+      }
+      #footer {
+        grid-area: footer;
+        background-color: beige;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <p id="header" class="grid-item">header</p>
+      <p id="sidebar" class="grid-item">sidebar</p>
+      <p id="content" class="grid-item">content</p>
+      <p id="footer" class="grid-item">footer</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        letter-spacing: -1.5px;
+      }
+      .grid-container {
+        display: grid;
+        /* grid-template-columns: 100px 100px 100px; */
+        /* grid-template-columns: repeat(3, 1fr);  */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-rows: 100px 100px;
+        gap: 20px;
+      }
+
+      .grid-item {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        background-color: royalblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .grid-item:nth-child(2n) {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="grid-item">그리드 박스 1번</div>
+      <div class="grid-item">그리드 박스 2번</div>
+      <div class="grid-item">그리드 박스 3번</div>
+      <div class="grid-item">그리드 박스 4번</div>
+      <div class="grid-item">그리드 박스 5번</div>
+      <div class="grid-item">그리드 박스 6번</div>
+    </div>
+  </body>
+</html>
