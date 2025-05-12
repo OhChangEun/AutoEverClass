@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        width: 200px;
+        height: 100px;
+        background-color: royalblue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button>버튼</button>
+    <input type="text" />
+    <script>
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", (event) => {
+        console.log(`clientX: ${event.clientX}`); // 브라우저의 뷰포트(스크롤을 포함하지 않은 화면 영역) 내에서, 클릭한 지점의 수평 위치
+        console.log(`clientY: ${event.clientY}`); // clientX와 마찬가지로, 클릭한 지점의 수직 위치를 나타냅니다.
+        console.log(`pageX: ${event.pageX}`); // 페이지의 전체 영역을 기준으로 한 수평 위치를 나타냅니다. 스크롤된 거리까지 포함됩니다.
+        console.log(`pageY: ${event.pageY}`); // pageX와 마찬가지로, 페이지 전체에서 클릭한 지점의 수직 위치를 나타냅니다.
+        console.log(`screenX: ${event.screenX}`); // 스크린(모니터) 좌표에서 클릭한 지점의 수평 위치를 나타냅니다. 화면의 좌상단을 기준으로 합니다.
+        console.log(`screenY: ${event.screenY}`); // screenX와 마찬가지로, 스크린(모니터) 좌표에서 클릭한 지점의 수직 위치를 나타냅니다.
+      });
+
+      const input = document.querySelector("input");
+      input.addEventListener("keydown",function(event){ // 이벤트 객체
+        console.log(`keyCode:${event.keyCode}`);
+        console.log(`ctrlKey:${event.ctrlKey}`);
+        console.log(`altKey:${event.altKey}`);
+        console.log(`shiftKey:${event.shiftKey}`);
+      })
+  </script>
+
+    </script>
+  </body>
+</html>

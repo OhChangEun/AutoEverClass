@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        letter-spacing: -1.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .todo-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .input-container {
+      }
+      .input-container .input-box {
+        display: inline-block;
+        width: 300px;
+        height: 30px;
+        background-color: beige;
+        padding: 0 20px;
+      }
+      .input-box input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        padding: 0;
+      }
+      .input-box input:focus {
+        outline: none;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="todo-list-container">
+      <h1>DOM 추가/삭제</h1>
+      <div>공부할 과목을 기록해 보세요.</div>
+      <div>공부가 끝난 과목은 클릭해서 삭제할 수 있습니다.</div>
+      <div class="input-container">
+        <span class="input-box">
+          <input type="text" id="toDo" autofocus />
+        </span>
+        <button onclick="addToDoItem()" class="add-btn">추가</button>
+      </div>
+      <div class="item-list"></div>
+    </div>
+    <script>
+      function addToDoItem() {
+        const toDo = document.querySelector("#toDo");
+        const itemList = document.querySelector(".item-list");
+        const submitBtn = document.querySelector(".add-btn");
+
+        const newItem = document.createElement("li");
+        newItem.innerText = toDo.value;
+        toDo.value = "";
+        itemList.appendChild(newItem);
+
+        submitBtn.addEventListener("dblclick", () => {
+          itemList.removeChild(newItem);
+        });
+      }
+    </script>
+  </body>
+</html>

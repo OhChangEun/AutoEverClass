@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 60%;
+        gap: 10%;
+      }
+      .btn-container {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .container button {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .green {
+        background-color: green;
+      }
+      .orange {
+        background-color: orange;
+      }
+      .purple {
+        background-color: purple;
+      }
+      .result {
+        width: 100%;
+        height: 70%;
+
+        background-color: green;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="btn-container">
+        <button class="green">Green</button>
+        <button class="orange">Orange</button>
+        <button class="purple">Purple</button>
+      </div>
+      <div class="result"></div>
+    </div>
+    <script>
+      const button = document.querySelectorAll("button");
+      const result = document.querySelector(".result");
+
+      button.forEach((btn) => {
+        btn.addEventListener("click", repaint);
+      });
+
+      function repaint(e) {
+        const color = e.target.innerText;
+        switch (color) {
+          case "Green":
+            result.style.backgroundColor = "green";
+            break;
+          case "Orange":
+            result.style.backgroundColor = "orange";
+            break;
+          case "Purple":
+            result.style.backgroundColor = "purple";
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
