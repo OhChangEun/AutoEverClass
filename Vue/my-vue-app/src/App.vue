@@ -12,6 +12,11 @@ import CardView from "./components/0515/2nd_UseProps.vue";
 import Parent from "./components/0515/3rd_PropsPracticeParent.vue";
 import EmitParent from "./components/0515/4th_EmitParent.vue";
 import News from "./components/0515/Practice_News/News.vue";
+import EventRef from "./components/0516/1st_EventRef.vue";
+import SingUp from "./components/0516/PracticeSignUp/page/SignUp.vue";
+import SelectBox from "./components/0516/2nd_SelectBox.vue";
+import ArrayRender from "./components/0516/3rd_ArrayRender.vue";
+import MemberList from "./components/0516/PracticeMember/MemberList.vue";
 // const user = reactive({
 //   name: "",
 //   job: "",
@@ -40,22 +45,28 @@ import News from "./components/0515/Practice_News/News.vue";
   <CardView :user="user" /> -->
   <!-- <Parent /> -->
   <!-- <EmitParent /> -->
-  <News />
+  <!-- <News /> -->
+  <!-- <EventRef /> -->
+  <SingUp />
+  <!-- <SelectBox /> -->
+  <!-- <ArrayRender /> -->
+  <!-- <MemberList /> -->
 </template>
 
 <!-- 컴포넌트 스타일이 해당 컴포넌트에만 적용 -->
 <!-- 컴포넌트 스타일 (선택사항) -->
-<style scoped>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+:root {
+  --main-logo-color: #002c5f;
+  --background-color: #fafafa;
+  --footer-color: #e9f1fe;
+  --header-height: 72px;
+}
 * {
-  letter-spacing: -1.5px;
-}
-h1 {
-  font-size: 30px;
-  color: royalblue;
-}
-input {
-  padding: 8px;
-  font-size: 18px;
-  margin-top: 10px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>
