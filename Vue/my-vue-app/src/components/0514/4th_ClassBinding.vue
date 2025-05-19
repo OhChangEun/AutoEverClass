@@ -7,6 +7,7 @@
     {{ isActive ? "Active" : "" }}
     {{ hasError ? "Error" : "" }}
   </div>
+
   <h2>배열 클래스 (동적 조합)</h2>
   <div
     :class="['box', isActive ? 'active' : '', hasError ? 'error' : '']"
