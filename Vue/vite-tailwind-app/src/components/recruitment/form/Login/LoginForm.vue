@@ -53,10 +53,18 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
+import { useModalStore } from "@/stores/modal";
+
 import axios from "axios";
 import BaseInput from "../../base/BaseInput.vue";
 import BaseButton from "../../base/BaseButton.vue";
 import BaseProblemLabel from "../../base/BaseProblemLabel.vue";
+
+const router = useRouter();
+const authStore = useAuthStore();
+const modal = useModalStore();
 
 const emailInput = ref("");
 const pwdInput = ref("");
@@ -80,7 +88,10 @@ const handleLogin = async () => {
     const pwd = pwdInput.value.trim();
 
     if (hasEmailError.value || hasPwdError.value || !email || !pwd) {
-      alert("이메일과 비밀번호를 알맞게 입력하세요.");
+      modal.open({
+        title: "",
+        message: "이메일과 비밀번호를 알맞게 입력하세요.",
+      });
       return;
     }
 
@@ -94,9 +105,29 @@ const handleLogin = async () => {
     );
 
     if (res.status === 200 && res.data === true) {
-      alert(`${res.data}: 로그인 완료!`);
+      // 사용자 리스트
+      const userListRes = await axios.get(
+        "http://222.117.237.119:8111/users/list"
+      );
+      // 이메일에 맞는 사용자
+      const user = userListRes.data.find((u) => u.email === email);
+      // 전역 상태 적용
+      if (user) {
+        authStore.login({
+          email: user.email,
+          name: user.name,
+        });
+      }
+      modal.open({
+        title: "로그인 성공",
+        message: `${user.name}님 로그인에 성공하셨습니다.`,
+      });
+      router.push("/");
     } else {
-      alert(`${res.data}: 로그인 실패`);
+      modal.open({
+        title: "로그인 실패",
+        message: "이메일 또는 비밀번호를 확인하세요.",
+      });
     }
     // const user = JSON.parse(localStorage.getItem(email));
 
@@ -107,8 +138,10 @@ const handleLogin = async () => {
     //   alert("로그인 실패ㅠ");
     // }
   } catch (err) {
-    console.error(err);
-    alert("로그인 실패! 서버 오류 발생!");
+    modal.open({
+      title: "로그인 실패",
+      message: "서버 통신 실패 : 에러 코드를 확인 하세요",
+    });
   }
 };
 </script>

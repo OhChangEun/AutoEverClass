@@ -129,11 +129,14 @@
 
 <script setup>
 import { ref, reactive, computed } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
 import BaseInput from "../../base/BaseInput.vue";
 import SignUpTerms from "./SignUpTerms.vue";
 import BaseButton from "../../base/BaseButton.vue";
 import BaseProblemLabel from "../../base/BaseProblemLabel.vue";
+
+const router = useRouter();
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^01[016789]-?\d{4}-?\d{4}$/;
@@ -259,13 +262,14 @@ const handleSubmit = async () => {
     if (res.data) {
       alert("회원 가입 성공");
       // 여기서 라우팅을 통해 로그인 페이지로 이동하기.
-      localStorage.setItem(
-        emailInput.value.trim(),
-        JSON.stringify({
-          name: nameInput.value.trim(),
-          pwd: pwdInput.value.trim(),
-        })
-      );
+      // localStorage.setItem(
+      //   emailInput.value.trim(),
+      //   JSON.stringify({
+      //     name: nameInput.value.trim(),
+      //     pwd: pwdInput.value.trim(),
+      //   })
+      // );
+      router.push("/login");
     } else {
       alert("회원 가입 실패");
     }
