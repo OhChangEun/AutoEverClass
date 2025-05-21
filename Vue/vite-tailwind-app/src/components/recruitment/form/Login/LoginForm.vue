@@ -61,6 +61,8 @@ import axios from "axios";
 import BaseInput from "../../base/BaseInput.vue";
 import BaseButton from "../../base/BaseButton.vue";
 import BaseProblemLabel from "../../base/BaseProblemLabel.vue";
+import { useAuthApi } from "../../../../api/auth";
+const { login } = useAuthApi();
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -99,6 +101,12 @@ const handleLogin = async () => {
       email,
       pwd,
     };
+
+    const res = await login(payload.email, payload.pwd);
+    if (res.data) {
+      router.push("/");
+    }
+
     const res = await axios.post(
       "http://222.117.237.119:8111/auth/login",
       payload

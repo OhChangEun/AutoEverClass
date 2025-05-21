@@ -23,6 +23,7 @@
 <script setup>
 import { useModalStore } from "@/stores/modal";
 import BaseButton from "./BaseButton.vue";
+
 const modal = useModalStore();
 const modalClose = () => {
   modal.close();

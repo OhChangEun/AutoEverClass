@@ -135,8 +135,13 @@ import BaseInput from "../../base/BaseInput.vue";
 import SignUpTerms from "./SignUpTerms.vue";
 import BaseButton from "../../base/BaseButton.vue";
 import BaseProblemLabel from "../../base/BaseProblemLabel.vue";
+import { useAuthApi } from "../../../../api/auth";
+import { useModalStore } from "@/stores/modal";
+
+const { signup, exists } = useAuthApi();
 
 const router = useRouter();
+const modal = useModalStore();
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^01[016789]-?\d{4}-?\d{4}$/;
@@ -234,65 +239,83 @@ const hasError = computed(() => {
 
 // 회원가입
 const handleSubmit = async () => {
-  try {
-    if (hasError.value) return;
-    if (isEmailDuplicate.value) {
-      alert("이메일 중복 검사를 해주세요.");
-      return;
-    }
-    const payload = {
-      email: emailInput.value.trim(),
-      pwd: pwdInput.value.trim(),
-      name: nameInput.value.trim(),
-    };
-
-    // alert("회원 가입 성공");
-    // 여기서 라우팅을 통해 로그인 페이지로 이동하기.
-    // localStorage.setItem(
-    //   emailInput.value.trim(),
-    //   JSON.stringify({
-    //     name: nameInput.value.trim(),
-    //     pwd: pwdInput.value.trim(),
-    //   })
-    // );
-    const res = await axios.post(
-      "http://222.117.237.119:8111/auth/signup",
-      payload
-    );
-    if (res.data) {
-      alert("회원 가입 성공");
-      // 여기서 라우팅을 통해 로그인 페이지로 이동하기.
-      // localStorage.setItem(
-      //   emailInput.value.trim(),
-      //   JSON.stringify({
-      //     name: nameInput.value.trim(),
-      //     pwd: pwdInput.value.trim(),
-      //   })
-      // );
-      router.push("/login");
-    } else {
-      alert("회원 가입 실패");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("가입 실패! 서버 오류 발생!");
+  if (hasError.value) return;
+  if (isEmailDuplicate.value) {
+    modal.open({
+      title: "",
+      message: "이메일 중복 검사를 해주세요.",
+    });
+    return;
   }
+  const payload = {
+    email: emailInput.value.trim(),
+    pwd: pwdInput.value.trim(),
+    name: nameInput.value.trim(),
+  };
+  const res = await signup(payload.email, payload.pwd, payload.name);
+  if (res.data) {
+    router.push("/login");
+  } else {
+    modal.open({
+      title: "",
+      message: "회원 가입에 실패했습니다.",
+    });
+  }
+  // try {
+  //   if (hasError.value) return;
+  //   if (isEmailDuplicate.value) {
+  //     alert("이메일 중복 검사를 해주세요.");
+  //     return;
+  //   }
+
+  //   const res = await axios.post(
+  //     "http://222.117.237.119:8111/auth/signup",
+  //     payload
+  //   );
+  //   if (res.data) {
+  //     alert("회원 가입 성공");
+  //     router.push("/login");
+  //   } else {
+  //     alert("회원 가입 실패");
+  //   }
+  // } catch (err) {
+  //   console.error(err);
+  //   alert("가입 실패! 서버 오류 발생!");
+  // }
 };
 
 // 이메일 형식 및 중복 확인
 const validateEmail = async () => {
-  const res = await axios.get(
-    `http://222.117.237.119:8111/auth/exists/${emailInput.value.trim()}`
-  );
+  const res = await exists(emailInput.value.trim());
   if (res.data) {
-    alert("사용 가능한 이메일입니다.");
-    // console.log("사용 가능한 이메일입니다.");
+    modal.open({
+      title: "",
+      message: "사용 가능한 이메일입니다.",
+    });
     isEmailDuplicate.value = false;
   } else {
-    alert("중복된 이메일입니다.");
-    // console.log("중복된 이메일입니다.");
+    modal.open({
+      title: "",
+      message: "중복된 이메일입니다.",
+    });
     isEmailDuplicate.value = true;
   }
+  // const res = await axios.get(
+  //   `http://222.117.237.119:8111/auth/exists/${emailInput.value.trim()}`
+  // );
+  // if (res.data) {
+  //   modal.open({
+  //     title: "",
+  //     message: "사용 가능한 이메일입니다.",
+  //   });
+  //   isEmailDuplicate.value = false;
+  // } else {
+  //   modal.open({
+  //     title: "",
+  //     message: "중복된 이메일입니다.",
+  //   });
+  //   isEmailDuplicate.value = true;
+  // }
 };
 </script>
 
