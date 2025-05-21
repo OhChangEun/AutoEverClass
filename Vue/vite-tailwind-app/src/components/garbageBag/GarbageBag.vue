@@ -1,5 +1,7 @@
 <template>
   <div class="w-full h-full flex justify-center items-center">
+    <!-- 로딩창 컴포넌트 출력 -->
+    <Loading v-if="loading" />
     <GarbageBagMap
       :selectedRegion="selectedRegion"
       @region-click="handleRegion"
@@ -29,7 +31,7 @@
         class="flex flex-col gap-2 border border-1 border-gray-400 rounded-md overflow-y-auto overflow-x-hidden w-full p-3"
       >
         <div v-for="(record, index) in filteredRecords" :key="index">
-          <GarbageBagItem :bags="record" />
+          <GarbageBagItem :bag="record" />
         </div>
       </div>
     </div>
@@ -39,17 +41,63 @@
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
 import axios from "axios";
-
-// import data from "../../assets/data.json";
 import GarbageBagMap from "./GarbageBagMap.vue";
 import GarbageBagItem from "./GarbageBagItem.vue";
+import Loading from "./Loading.vue";
+import { regionMap } from "./data";
 
 const records = ref([]); // API로부터 받아온 리스트
-const selectedRegion = ref("서울특별시"); // 선택된 도시
+const selectedRegion = ref(); // 선택된 도시
+
 const handleRegion = (region) => {
   selectedRegion.value = region;
-  // console.log(region);
 };
+
+// 현재 위치
+const latitude = ref(null);
+const longitude = ref(null);
+
+const loading = ref(false);
+
+// 위치 가져오기
+const getLocation = async () => {
+  if (!navigator.geolocation) {
+    console.error("이 브라우저는 Geolocation을 지원하지 않습니다.");
+    return;
+  }
+
+  loading.value = true;
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      latitude.value = pos.coords.latitude;
+      longitude.value = pos.coords.longitude;
+
+      try {
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude.value}&lon=${longitude.value}&format=json`
+        );
+        const data = await res.json();
+        console.log(data);
+
+        const tmpCity = data.address.city || data.address.county || "";
+        selectedRegion.value = regionMap[tmpCity]; // 초기 위치 기반 시 입력
+      } catch (err) {
+        console.error("위치 정보 에러", err);
+      } finally {
+        loading.value = false;
+      }
+    },
+    (err) => {
+      console.error("위치 정보를 가져오는 데 실패했습니다.", err);
+      loading.value = false;
+    }
+  );
+};
+
+onMounted(async () => {
+  await getLocation(); // 위치를 가져오고
+  await fetchData(); // 위치 기반 시/구로 API 요청
+});
 
 // 선택된 지역구
 const selectedDistrict = ref("");
@@ -66,9 +114,7 @@ const filteredRecords = computed(() => {
   return records.value.filter((r) => r.signguNm === selectedDistrict.value);
 });
 
-const error = ref(""); // 에러 메시지
 const fetchData = async () => {
-  error.value = null;
   try {
     const res = await axios.get(
       "http://api.data.go.kr/openapi/tn_pubr_public_weighted_envlp_api",
@@ -93,11 +139,9 @@ const fetchData = async () => {
     }
   } catch (err) {
     console.error(err);
-    error.value = "데이터를 불러오는 중에 오류가 발생했습니다.";
   }
 };
 
-onMounted(fetchData);
 watch(selectedRegion, async () => {
   selectedDistrict.value = "";
   await fetchData();
