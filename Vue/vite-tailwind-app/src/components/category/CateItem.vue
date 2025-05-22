@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-10/12 flex justify-between items-center py-2 px-5 ml-3 rounded-2xl border cursor-pointer"
+    class="w-10/12 flex justify-between items-center py-2 px-5 ml-3 rounded-lg border cursor-pointer hover:bg-gray-100"
   >
     <div class="">{{ cate.categoryName }}</div>
     <button @click="() => removeCategoryById(cate.categoryId)">❌</button>

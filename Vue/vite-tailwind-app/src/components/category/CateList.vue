@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start gap-1 mt-6">
+  <div class="w-10/12 max-h-[400px] overflow-y-auto mx-auto mt-12">
     <CateItem
       v-for="cate in cates"
       :key="cate.categoryId"

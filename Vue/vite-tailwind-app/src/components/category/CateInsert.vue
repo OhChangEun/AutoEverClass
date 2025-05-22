@@ -10,7 +10,7 @@
         width="w-20"
         height="h-11"
         customClass="bg-main-logo text-white"
-        additionalClass="rounded-3xl"
+        additionalClass="rounded-3xl hover:brightness-75"
         label="추가"
       />
     </div>

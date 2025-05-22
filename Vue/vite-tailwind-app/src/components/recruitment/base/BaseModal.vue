@@ -10,26 +10,23 @@
         <h2 class="text-lg font-bold mb-2">{{ modal.title }}</h2>
         <p>{{ modal.message }}</p>
       </div>
-      <!-- <BaseButton
-        @click="modalClose"
-        type="button"
-        width="w-20"
-        customClass="bg-main-logo text-white text-sm hover:brightness-90"
-        label="확인"
-      /> -->
-      <button
-        @click="modal.confirm"
-        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        확인
-      </button>
-      <button
-        v-if="modal.hasCancel"
-        @click="modal.close"
-        class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400"
-      >
-        취소
-      </button>
+      <div>
+        <BaseButton
+          @click="modal.confirm"
+          type="button"
+          width="w-20"
+          customClass="bg-main-logo text-white text-sm hover:brightness-75"
+          label="확인"
+        />
+        <BaseButton
+          v-if="modal.hasCancel"
+          @click="modal.close"
+          type="button"
+          width="w-20"
+          customClass="bg-white text-main-logo border border-main-logo text-sm hover:brightness-90 ml-4"
+          label="취소"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -38,7 +35,4 @@ import { useModalStore } from "@/stores/modal";
 import BaseButton from "./BaseButton.vue";
 
 const modal = useModalStore();
-const modalClose = () => {
-  modal.close();
-};
 </script>
