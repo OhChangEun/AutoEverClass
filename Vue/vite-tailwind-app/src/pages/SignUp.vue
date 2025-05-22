@@ -8,6 +8,6 @@
 </template>
 
 <script setup>
-import SignUpHeader from "../form/SignUp/SignUpHeader.vue";
-import SignUpForm from "../form/SignUp/SignUpForm.vue";
+import SignUpHeader from "../../src/components/recruitment/form/SignUp/SignUpHeader.vue";
+import SignUpForm from "../../src/components/recruitment/form/SignUp/SignUpForm.vue";
 </script>

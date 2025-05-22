@@ -254,6 +254,7 @@ const handleSubmit = async () => {
   };
   const res = await signup(payload.email, payload.pwd, payload.name);
   if (res.data) {
+    localStorage.setItem("email", payload.email);
     router.push("/login");
   } else {
     modal.open({

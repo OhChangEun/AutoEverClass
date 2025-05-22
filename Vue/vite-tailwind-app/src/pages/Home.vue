@@ -1,32 +1,61 @@
 <template>
-  <div>
-    <h1>홈입니다</h1>
-    <p>가장 먼저 보이는 페이지입니다.</p>
-    <router-link to="/about">소개 페이지로 이동</router-link>
-    <br />
-    <!-- <router-link :to="`profile/${name}`">장원영 소개 페이지로 이동</router-link> -->
-    <input
-      v-model="name"
-      @keyup.enter="goToProfile"
-      paceholder="이름을 입력 하세요."
-      class="border px-3 py-2 rounded w-full max-w-md mb-4"
-    />
-    <button
-      @click="goToProfile"
-      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+  <div class="flex flex-col items-center justify-center min-h-screen space-y-6">
+    <h1 class="text-2xl font-bold">🏠 홈 화면</h1>
+
+    <!-- 로그인된 사용자 정보 -->
+    <div
+      v-if="user.isLoggedIn"
+      class="flex flex-col items-center gap-10 text-center"
     >
-      프로필 보기
-    </button>
+      <div>
+        <p><strong>이름:</strong> {{ user.name }}</p>
+        <p><strong>이메일:</strong> {{ user.email }}</p>
+      </div>
+
+      <BaseButton
+        type="button"
+        @click="logout"
+        width="w-20"
+        customClass="bg-main-logo text-white"
+        label="로그아웃"
+      />
+    </div>
+
+    <!-- 로그인 안된 경우 -->
+    <div v-else class="flex flex-col items-center space-y-2">
+      <router-link to="/signup" class="text-blue-500 underline">
+        회원가입
+      </router-link>
+      <router-link to="/login" class="text-blue-500 underline">
+        로그인
+      </router-link>
+      <router-link to="/garbageBag" class="text-blue-500 underline">
+        종량제 봉투 가격 확인
+      </router-link>
+      <router-link to="/imageupload" class="text-blue-500 underline">
+        이미지 업로드
+      </router-link>
+      <router-link to="/category" class="text-blue-500 underline">
+        카테고리
+      </router-link>
+      <router-link to="/board" class="text-blue-500 underline">
+        게시판 상세
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-const name = ref("");
-const router = useRouter();
+import { useAuthStore } from "../stores/auth";
+import { computed } from "vue";
+import BaseButton from "../components/recruitment/base/BaseButton.vue";
 
-const goToProfile = () => {
-  router.push(`/profile/${name.value}`);
+const authStore = useAuthStore();
+const user = computed(() => {
+  return authStore.user;
+});
+
+const logout = () => {
+  authStore.logout();
 };
 </script>

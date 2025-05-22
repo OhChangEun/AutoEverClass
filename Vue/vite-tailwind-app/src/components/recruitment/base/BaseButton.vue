@@ -26,7 +26,7 @@ const props = defineProps({
 });
 const computedClass = computed(() => {
   return [
-    "w-full rounded font-medium text-base text-center ",
+    "rounded font-medium text-base text-center ",
     "transition-all duration-200 ease cursor-pointer",
     props.width,
     props.height,

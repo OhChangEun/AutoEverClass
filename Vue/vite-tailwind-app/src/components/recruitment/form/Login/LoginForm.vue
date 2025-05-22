@@ -57,11 +57,12 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import { useModalStore } from "@/stores/modal";
 
-import axios from "axios";
 import BaseInput from "../../base/BaseInput.vue";
 import BaseButton from "../../base/BaseButton.vue";
 import BaseProblemLabel from "../../base/BaseProblemLabel.vue";
 import { useAuthApi } from "../../../../api/auth";
+import { getUserList } from "../../../../api/auth";
+
 const { login } = useAuthApi();
 
 const router = useRouter();
@@ -104,21 +105,10 @@ const handleLogin = async () => {
 
     const res = await login(payload.email, payload.pwd);
     if (res.data) {
-      router.push("/");
-    }
-
-    const res = await axios.post(
-      "http://222.117.237.119:8111/auth/login",
-      payload
-    );
-
-    if (res.status === 200 && res.data === true) {
-      // 사용자 리스트
-      const userListRes = await axios.get(
-        "http://222.117.237.119:8111/users/list"
-      );
+      const userListRes = await getUserList();
       // 이메일에 맞는 사용자
       const user = userListRes.data.find((u) => u.email === email);
+
       // 전역 상태 적용
       if (user) {
         authStore.login({
@@ -137,13 +127,36 @@ const handleLogin = async () => {
         message: "이메일 또는 비밀번호를 확인하세요.",
       });
     }
-    // const user = JSON.parse(localStorage.getItem(email));
 
-    // if (user && user.pwd === pwd) {
-    //   alert("로그인 완료!");
-    //   // 로그인 완료 시에 메인 페이지로 이동
+    // const res = await axios.post(
+    //   "http://222.117.237.119:8111/auth/login",
+    //   payload
+    // );
+
+    // if (res.status === 200 && res.data === true) {
+    //   // 사용자 리스트
+    //   const userListRes = await axios.get(
+    //     "http://222.117.237.119:8111/users/list"
+    //   );
+    //   // 이메일에 맞는 사용자
+    //   const user = userListRes.data.find((u) => u.email === email);
+    //   // 전역 상태 적용
+    //   if (user) {
+    //     authStore.login({
+    //       email: user.email,
+    //       name: user.name,
+    //     });
+    //   }
+    //   modal.open({
+    //     title: "로그인 성공",
+    //     message: `${user.name}님 로그인에 성공하셨습니다.`,
+    //   });
+    //   router.push("/");
     // } else {
-    //   alert("로그인 실패ㅠ");
+    //   modal.open({
+    //     title: "로그인 실패",
+    //     message: "이메일 또는 비밀번호를 확인하세요.",
+    //   });
     // }
   } catch (err) {
     modal.open({

@@ -13,6 +13,9 @@ export const useAuthApi = () => {
   return { login, signup, exists };
 };
 
+export const getUserList = async () => {
+  return await axios.get(`/users/list`);
+};
 // const handleSubmit = async () => {
 //   try {
 //     if (hasError.value) return;

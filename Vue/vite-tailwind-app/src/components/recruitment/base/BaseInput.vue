@@ -5,7 +5,6 @@
     <div class="input-container" :class="{ 'input-error': hasError }">
       <input
         v-model="inputValue"
-        @input="onInput"
         :type="inputType"
         :class="className"
         :name="name"

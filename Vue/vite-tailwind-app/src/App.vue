@@ -24,20 +24,14 @@
   <!-- <div class="w-full h-full flex justify-center items-center">
     <GarbageBag />
   </div> -->
-  <router-view />
-  <BaseModal />
+  <div class="w-full h-full flex justify-center">
+    <router-view />
+    <BaseModal />
+  </div>
 </template>
 
 <script setup>
-import SignUp from "./components/recruitment/page/SignUp.vue";
-import Login from "./components/recruitment/page/Login.vue";
-import ThemeSetting from "./pages/ThemeSetting.vue";
-import Home from "./components/recruitment/page/Home.vue";
-import { useColorThemeStore } from "@/stores/color";
 import BaseModal from "./components/recruitment/base/BaseModal.vue";
-import GarbageBag from "./components/garbageBag/GarbageBag.vue";
-
-const themeStore = useColorThemeStore();
 </script>
 
 <style>
