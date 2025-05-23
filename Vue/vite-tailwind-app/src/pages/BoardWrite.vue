@@ -95,6 +95,7 @@ const onUpload = async () => {
   if (!file.value) return;
   const storageRef = storage.ref();
   const fileRef = storageRef.child(file.value.name);
+
   await fileRef.put(file.value);
   url.value = await fileRef.getDownloadURL();
 };

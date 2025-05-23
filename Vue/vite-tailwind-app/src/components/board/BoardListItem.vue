@@ -21,6 +21,15 @@
 </template>
 
 <script setup>
-import { timeFromNow } from "@/utils/commons";
+// ✅ dayjs 관련 설정
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ko";
+dayjs.extend(relativeTime);
+dayjs.locale("ko");
+
+// ✅ 내부에서 상대 시간 포맷 함수 구현
+const timeFromNow = (dateStr) => dayjs(dateStr).fromNow();
+
 const props = defineProps({ board: Object });
 </script>
