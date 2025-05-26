@@ -8,6 +8,9 @@ import Info from "./0523/UseEffectPractice";
 import Clock from "./0523/Clock";
 import Counter from "./0523/UseReducerPractice";
 import Average from "./0523/UseMemoPratice";
+import RefCnt from "./0526/1st_UseRefPractice";
+import CreateRef from "./0526/2nd_UseRefPractice";
+import StyledCom from "./0526/3rd_StyledComponents";
 
 function App() {
   // const name = "장원영";
@@ -30,7 +33,11 @@ function App() {
       {/* <Info /> */}
       {/* <Clock /> */}
       {/* <Counter /> */}
-      <Average />
+      {/* <Average /> */}
+      {/* 0526 */}
+      {/* <RefCnt /> */}
+      {/* <CreateRef /> */}
+      <StyledCom />
     </>
   );
 }
