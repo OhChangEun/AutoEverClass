@@ -8,21 +8,24 @@ import Profile from "./pages/Profile";
 // Route는 하나의 경로에 어떤 컴포넌트를 보여줄지 정의.
 import Layout from "./pages/Layout";
 import NewsPage from "./pages/NewsPage";
+import UserStore from "./store/UserStore";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<NewsPage />} />
-        <Route path="/:category" element={<NewsPage />} />
-        {/* <Route path="/:category" element={<NewsPage />} /> */}
-        {/* <Route element={<Layout />}>
+    <UserStore>
+      <Router>
+        <Routes>
+          <Route path="/" element={<NewsPage />} />
+          <Route path="/:category" element={<NewsPage />} />
+          {/* <Route path="/:category" element={<NewsPage />} /> */}
+          {/* <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/profiles/:username" element={<Profile />} />
         </Route> */}
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </UserStore>
   );
 }
 
